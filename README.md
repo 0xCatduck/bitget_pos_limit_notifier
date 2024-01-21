@@ -1,7 +1,7 @@
 # BitgetPosLimitNotifier
 
 BitgetPosLimitNotifier 是一款用於實時監控並通知使用者 Bitget 交易平台上特定交易對的倉位限制比例是否發生變化的工具。
-![BitgetPosLimitNotifier Screenshot](https://imgur.com/9Hrel48)
+![BitgetPosLimitNotifier Screenshot](https://i.imgur.com/9Hrel48.png)
 
 ## 功能
 
@@ -25,7 +25,7 @@ BitgetPosLimitNotifier 是一款用於實時監控並通知使用者 Bitget 交�
 ## 注意事項
 
 視窗縮小後若發生倉位限制變化，彈窗不會跳出而是在背景顯示並且程式的icon會閃爍。
-![Minimize window Screenshot](https://imgur.com/GzUfyKE)
+![Minimize window Screenshot](https://i.imgur.com/GzUfyKE.png)
 
 ## 貢獻
 
