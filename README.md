@@ -1,6 +1,7 @@
 # BitgetPosLimitNotifier
 
 BitgetPosLimitNotifier 是一款用於實時監控並通知使用者 Bitget 交易平台上特定交易對的倉位限制比例是否發生變化的工具。
+設計主要用以查詢Bitget 已經施加開倉限制的交易對，在何時解封或著進一步限制開倉數量。
 ![BitgetPosLimitNotifier Screenshot](https://i.imgur.com/9Hrel48.png)
 
 ## 功能
@@ -14,6 +15,8 @@ BitgetPosLimitNotifier 是一款用於實時監控並通知使用者 Bitget 交�
 本工具需要 Python 3.6 或更高版本。可以從以下地址下載並安裝 Python：https://www.python.org/downloads/
 
 除此之外，本工具不需要安裝任何額外的第三方庫。
+
+您也可以下載位於右側Release的BitgetPostLimitNotifier.exe (v1.0)，不須python環境即可直接開啟程式。
 
 ## 使用方法
 

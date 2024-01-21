@@ -9,45 +9,53 @@ import json
 from tkinter import Tk, messagebox, Label, Entry, Button, Text
 import webbrowser
 import winsound
+import time
 
 # 全局變量
 current_symbol = ""
+current_time = ""
 last_pos_limit = 0
 timer = None
+is_first_check = True
 
 def fetch_pos_limit(symbol):
     try:
         response = requests.get(f"https://api.bitget.com/api/v2/mix/market/contracts?productType=USDT-FUTURES&symbol={symbol}USDT")
         data = json.loads(response.text)
+        current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         for item in data["data"]:
-            return round(float(item["posLimit"]) * 100, 2)
+            return round(float(item["posLimit"]) * 100, 2), current_time
     except Exception as e:
         messagebox.showerror("錯誤", f"無法從API獲取數據: {e}")
     return 0
 
-def update_pos_limit_label(symbol, pos_limit):
-    pos_limit_label.config(text=f"目前 {symbol} 倉位限制: {pos_limit}%")
+def update_pos_limit_label(symbol, pos_limit, current_time):
+    pos_limit_label.config(text=f"目前 {symbol} 倉位限制: {pos_limit}%\n更新時間：[{current_time}]")
 
 def check():
-    global last_pos_limit, current_symbol, timer
+    global last_pos_limit, current_symbol, timer, current_time, is_first_check
     if not current_symbol:
         return
 
-    pos_limit = fetch_pos_limit(current_symbol)
-    update_pos_limit_label(current_symbol, pos_limit)
+    pos_limit, current_time = fetch_pos_limit(current_symbol)
+    update_pos_limit_label(current_symbol, pos_limit, current_time)
 
-    if pos_limit != last_pos_limit:
+    # 只有在非第一次查詢且倉位限制發生變化時才觸發警告
+    if not is_first_check and pos_limit != last_pos_limit:
         winsound.Beep(1000, 1000)  # 頻率1000赫茲，持續時間1000毫秒
         messagebox.showwarning("警告", f"{current_symbol} posLimit 的值變化為 {pos_limit}%")
-        last_pos_limit = pos_limit
+    
+    last_pos_limit = pos_limit
+    is_first_check = False  # 更新布林變量，表示已經不是第一次查詢了
 
     timer = root.after(10000, check)
 
 def update_symbol():
-    global current_symbol, timer
+    global current_symbol, timer, is_first_check
     if timer:
         root.after_cancel(timer)
     current_symbol = symbol_entry.get().upper()
+    is_first_check = True
     check()
 
 def open_link(event):
@@ -57,7 +65,7 @@ def open_link(event):
 root = Tk()
 root.title("Bitget倉位限制偵測器")
 root.option_add("*Font", "標楷體")
-root.geometry("310x240")
+root.geometry("320x280")
 
 symbol_label = Label(root, text="交易對(例如UMAUSDT則輸入UMA)")
 symbol_label.pack()
