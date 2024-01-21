@@ -16,7 +16,9 @@ BitgetPosLimitNotifier 是一款用於實時監控並通知使用者 Bitget 交�
 
 除此之外，本工具不需要安裝任何額外的第三方庫。
 
-您也可以下載位於右側Release的BitgetPostLimitNotifier.exe (v1.0)，不須python環境即可直接開啟程式。
+您也可以下載位於右側Releases的BitgetPostLimitNotifier.exe (v1.0)，不須python環境即可直接開啟程式。
+![Releases](https://i.imgur.com/GlusKdc.png)
+![Releases.exe](https://i.imgur.com/rMDbdqr.png)
 
 ## 使用方法
 
