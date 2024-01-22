@@ -74,27 +74,23 @@ def play_alert_sound():
 
     # 獲得執行檔案的目錄
     if getattr(sys, 'frozen', False):
-        # 如果是打包後的執行檔，比如用 PyInstaller，'frozen' 屬性會是 True
-        application_path = os.path.dirname(sys.executable)
+        # 如果是打包後的執行檔，使用 _MEIPASS
+        base_path = sys._MEIPASS
     else:
         # 如果不是打包後的執行檔，則直接使用 __file__ 屬性
-        application_path = os.path.dirname(__file__)
+        base_path = os.path.dirname(os.path.abspath(__file__))
 
     # 建立 alert.mp3 檔案的絕對路徑
-    file_path = os.path.join(application_path, 'alert.mp3')
-
-    # 檢查檔案是否存在
-    if not os.path.isfile(file_path):
-        print("警報聲音檔案未找到: " + file_path)
-        return
+    alert_sound_path = os.path.join(base_path, 'alert.mp3')
 
     # 載入並播放警鈴聲音文件
-    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.load(alert_sound_path)
     pygame.mixer.music.play()
 
     # 等待音樂播放完畢
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
+
 
 
 def open_link(event):
