@@ -2,8 +2,8 @@
 
 BitgetPosLimitNotifier 是一款用於實時監控並通知使用者 Bitget 交易平台上特定交易對的倉位限制比例是否發生變化的工具。
 設計主要用以查詢Bitget 已經施加開倉限制的交易對，在何時解封或著進一步限制開倉數量。
-![BitgetPosLimitNotifier Screenshot1](https://i.imgur.com/9Hrel48.png)
-![BitgetPosLimitNotifier Screenshot1](https://i.imgur.com/9Hrel48.png)
+![BitgetPosLimitNotifier Windows Screenshot](https://i.imgur.com/9Hrel48.png)
+![BitgetPosLimitNotifier MacOS Screenshot](https://i.imgur.com/xxVmCv9.jpg)
 
 ## 功能
 
@@ -26,20 +26,20 @@ pip install -r requirements.txt
 ```
 這將會安裝 requirements.txt 中列出的所有依賴包。
 
-您也可以下載位於右側Releases的BitgetPostLimitNotifier_v1.0，不須python環境即可直接開啟程式。
+您也可以下載位於右側Releases的v1.0，不須python環境即可直接開啟程式。
 ![Releases](https://i.imgur.com/GlusKdc.png)
-![Releases.exe](https://i.imgur.com/rMDbdqr.png)
+![v1.0](https://i.imgur.com/rMDbdqr.png)
 
 ## 使用方法
 
 1. 啟動應用。
 2. 在輸入框中輸入您想要監控的交易對（例如，對於 UMA/USDT 交易對，只需輸入 'UMA'）。
 3. 點擊“更新”按鈕開始監控。
-4. 應用會每10秒自動檢查倉位限制，並在發現任何變化時發出警報並通過彈窗提醒。
+4. 應用會每10秒自動檢查倉位限制，並在發現任何變化時發出三秒警報聲並通過彈窗提醒。
 
 ## 注意事項
 
-Windows系統視窗縮小後若發生倉位限制變化，彈窗不會跳出而是在背景顯示並且程式的icon會閃爍。
+Windows系統視窗縮小後若發生倉位限制變化，視窗不會跳出而是在背景顯示並且程式的icon會閃爍；MacOS則會彈出視窗。
 ![Minimize window Screenshot](https://i.imgur.com/GzUfyKE.png)
 
 ## 貢獻
