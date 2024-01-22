@@ -9,7 +9,7 @@ BitgetPosLimitNotifier 是一款用於實時監控並通知使用者 Bitget 交�
 
 - **實時監控**: 定時檢查並更新所選交易對的倉位限制。
 - **用戶自定義**: 允許使用者輸入並更新他們想要監控的交易對。
-- **警告通知**: 當所選交易對的倉位限制發生變化時，程式會通過彈窗提醒使用者。
+- **警告通知**: 當所選交易對的倉位限制發生變化時，程式會發出警示聲並通過彈窗提醒使用者。
 
 ## 安裝
 
@@ -25,9 +25,12 @@ python -m ensurepip --default-pip
 pip install -r requirements.txt
 ```
 這將會安裝 requirements.txt 中列出的所有依賴包。
-
+<br>
 您也可以下載位於右側Releases的v1.0，不須python環境即可直接開啟程式。
+1. 點擊右手邊的最新版本號
 ![Releases](https://i.imgur.com/F1lpi7d.png)
+<br>
+2. 依照系統需求下載單一檔案
 ![v1.0](https://i.imgur.com/JYdhD6I.png)
 
 ## 使用方法
