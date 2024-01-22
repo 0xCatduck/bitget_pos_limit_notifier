@@ -28,11 +28,13 @@ pip install -r requirements.txt
 <br>
 <br>
 您也可以下載位於右側Releases的v1.0，不須python環境即可直接開啟程式。
-1. 點擊右手邊的最新版本號
+1. 點擊右手邊的最新版本號。
+
 ![Releases](https://i.imgur.com/F1lpi7d.png)
 <br>
 <br>
-2. 依照系統需求下載單一檔案
+2. 依照系統需求下載單一檔案。
+
 ![v1.0](https://i.imgur.com/JYdhD6I.png)
 
 ## 使用方法
