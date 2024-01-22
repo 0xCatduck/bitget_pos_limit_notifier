@@ -8,8 +8,11 @@ import requests
 import json
 from tkinter import Tk, messagebox, Label, Entry, Button, Text
 import webbrowser
-import winsound
 import time
+import pygame
+import os
+import sys
+import random
 
 # 全局變量
 current_symbol = ""
@@ -18,6 +21,11 @@ last_pos_limit = 0
 timer = None
 is_first_check = True
 
+def fetch_pos_limit(symbol):
+    #測試用
+    return random.randint(1, 1000), time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+'''
 def fetch_pos_limit(symbol):
     try:
         response = requests.get(f"https://api.bitget.com/api/v2/mix/market/contracts?productType=USDT-FUTURES&symbol={symbol}USDT")
@@ -28,6 +36,7 @@ def fetch_pos_limit(symbol):
     except Exception as e:
         messagebox.showerror("錯誤", f"無法從API獲取數據: {e}")
     return 0
+'''
 
 def update_pos_limit_label(symbol, pos_limit, current_time):
     pos_limit_label.config(text=f"目前 {symbol} 倉位限制: {pos_limit}%\n更新時間：[{current_time}]")
@@ -42,7 +51,8 @@ def check():
 
     # 只有在非第一次查詢且倉位限制發生變化時才觸發警告
     if not is_first_check and pos_limit != last_pos_limit:
-        winsound.Beep(1000, 1000)  # 頻率1000赫茲，持續時間1000毫秒
+        # 播放警鈴聲音
+        play_alert_sound()
         messagebox.showwarning("警告", f"{current_symbol} posLimit 的值變化為 {pos_limit}%")
     
     last_pos_limit = pos_limit
@@ -57,6 +67,35 @@ def update_symbol():
     current_symbol = symbol_entry.get().upper()
     is_first_check = True
     check()
+
+def play_alert_sound():
+    # 初始化 pygame 的混音器
+    pygame.mixer.init()
+
+    # 獲得執行檔案的目錄
+    if getattr(sys, 'frozen', False):
+        # 如果是打包後的執行檔，比如用 PyInstaller，'frozen' 屬性會是 True
+        application_path = os.path.dirname(sys.executable)
+    else:
+        # 如果不是打包後的執行檔，則直接使用 __file__ 屬性
+        application_path = os.path.dirname(__file__)
+
+    # 建立 alert.mp3 檔案的絕對路徑
+    file_path = os.path.join(application_path, 'alert.mp3')
+
+    # 檢查檔案是否存在
+    if not os.path.isfile(file_path):
+        print("警報聲音檔案未找到: " + file_path)
+        return
+
+    # 載入並播放警鈴聲音文件
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
+
+    # 等待音樂播放完畢
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+
 
 def open_link(event):
     webbrowser.open("https://www.bitget.com/zh-TW/futures/introduction/position-limit")
