@@ -27,8 +27,8 @@ pip install -r requirements.txt
 這將會安裝 requirements.txt 中列出的所有依賴包。
 
 您也可以下載位於右側Releases的v1.0，不須python環境即可直接開啟程式。
-![Releases](https://i.imgur.com/GlusKdc.png)
-![v1.0](https://i.imgur.com/rMDbdqr.png)
+![Releases](https://i.imgur.com/F1lpi7d.png)
+![v1.0](https://i.imgur.com/JYdhD6I.png)
 
 ## 使用方法
 
