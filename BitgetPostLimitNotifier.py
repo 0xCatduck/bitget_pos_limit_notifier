@@ -12,7 +12,6 @@ import time
 import pygame
 import os
 import sys
-import random
 
 # 全局變量
 current_symbol = ""
@@ -21,11 +20,7 @@ last_pos_limit = 0
 timer = None
 is_first_check = True
 
-def fetch_pos_limit(symbol):
-    #測試用
-    return random.randint(1, 1000), time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
-'''
 def fetch_pos_limit(symbol):
     try:
         response = requests.get(f"https://api.bitget.com/api/v2/mix/market/contracts?productType=USDT-FUTURES&symbol={symbol}USDT")
@@ -35,8 +30,7 @@ def fetch_pos_limit(symbol):
             return round(float(item["posLimit"]) * 100, 2), current_time
     except Exception as e:
         messagebox.showerror("錯誤", f"無法從API獲取數據: {e}")
-    return 0
-'''
+    return 0, ""
 
 def update_pos_limit_label(symbol, pos_limit, current_time):
     pos_limit_label.config(text=f"目前 {symbol} 倉位限制: {pos_limit}%\n更新時間：[{current_time}]")
